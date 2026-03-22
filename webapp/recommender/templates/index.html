@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommender</title>
+</head>
+<body>
+
+<h1>Movie Recommendation System</h1>
+
+<form action="{% url 'recommend' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="movie" placeholder="Enter movie name" required>
+    <button type="submit">Recommend</button>
+</form>
+
+{% if recommendations %}
+    <h2>Recommended Movies:</h2>
+    <ul>
+        {% for movie in recommendations %}
+            <li>{{ movie }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</body>
+</html>
