@@ -9,9 +9,12 @@ def home(request):
 def recommend_view(request):
     if request.method == 'POST':
         movie = request.POST.get('movie')
-        recommendations = recommend(movie)
+        names, posters = recommend(movie)
+
+        movie_data = zip(names, posters)
+
         return render(request, 'index.html', {
-            'recommendations': recommendations
+            'movie_data': movie_data
         })
 
     return render(request, 'index.html')
